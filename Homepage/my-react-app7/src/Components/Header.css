@@ -1,0 +1,63 @@
+/* src/Components/Header.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 2rem;
+  background: radial-gradient(circle at 50% 1%, rgba(212, 191, 55, 0.15), rgba(0, 0, 0, 0.85) 80%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  right: 0; /* Preventing overlap with the scrollbar */
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav a {
+  color: #ffffff;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  margin-right: 50px; /* Adding space between the buttons and the right edge */
+}
+
+.auth .btn-login {
+  background: none;
+  color: #fff;
+  padding: 13px 20px;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: text-decoration 0.3s ease;
+  margin-right: 15px; /* Added space between the buttons */
+}
+
+.auth .btn-login:hover {
+  text-decoration: underline;
+}
+
+.auth .btn-signin {
+  background-color: white;
+  color: black;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 30px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 15px; /* Added margin to move the button to the left */
+  transition: background-color 0.3s ease;
+}
+
+.auth .btn-signin:hover {
+  background-color: #d4af37;
+}
