@@ -1,0 +1,158 @@
+/* src/Components/SignIn.css */
+.sign-in-page {
+  background: linear-gradient(45deg, rgba(212, 191, 55, 0.219), rgba(0, 0, 0, 0.95));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 20px; /* Added padding to prevent squeezing */
+}
+
+.form-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  background-color: #111;
+  border-radius: 10px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-content {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: white;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.forgot-password {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.sign-in-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: white;
+  color: black;
+  border-radius: 30px;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.sign-in-btn:hover {
+  background-color: #d4af37;
+  transform: translateY(-3px);
+}
+
+/* Social login buttons styling */
+.social-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.social-btn {
+  width: 50px; /* Increased the button width */
+  height: 50px; /* Increased height to make the buttons look consistent */
+  margin: 0 10px;
+  border-radius: 50%;
+  font-size: 25px; /* Increased icon size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+}
+
+.google-btn {
+  background-color: #db4437;
+}
+
+.facebook-btn {
+  background-color: #3b5998;
+}
+
+.twitter-btn {
+  background-color: #1da1f2;
+}
+
+.social-btn:hover {
+  opacity: 0.8;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .form-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+.social-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+  .social-btn {
+  width: 50px; /* Set width */
+  height: 50px; /* Set height to same as width for perfect circle */
+  margin: 0 10px;
+  border-radius: 50%; /* Ensures the button is a perfect circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  font-size: 25px; /* Increase font size for better visibility */
+  transition: background-color 0.3s ease;
+  }
+}
