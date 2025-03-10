@@ -41,6 +41,8 @@ class LegalChatbotHF:
 
     def get_response(self, user_input: str) -> str:
         """Generate a response based on user input."""
+        if user_input.lower() in ["hi", "hello", "hey"]:
+            return "Hello! How can I assist you today?"
         response = self.find_best_match(user_input)
         return response + "\n\nWhat do you want to know more about?"
 
