@@ -43,6 +43,10 @@ def chatbot_response():
     try:
         data = request.json
         user_query = data.get("query", "").strip()
+
+        #  Added logging when a request is received
+        print(f"Received query: {user_query}")
+
         if not user_query:
             return jsonify({"answer": "Please enter a valid question."}), 400
 
@@ -50,6 +54,12 @@ def chatbot_response():
         return jsonify({"answer": response})
     except Exception as e:
         return jsonify({"answer": f"Error: {str(e)}"}), 500
+
+#  Added health check endpoint
+@app.route("/health", methods=["GET"])
+def health_check():
+    """Health check endpoint to verify if the API is running."""
+    return jsonify({"status": "OK"}), 200
 
 if __name__ == "__main__":  
     app.run(host="0.0.0.0", port=5000, debug=True)
