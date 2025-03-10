@@ -5,7 +5,7 @@ import re
 df = pd.read_csv("lawdata.csv", encoding="ISO-8859-1")
 
 # Define specific legal keywords to look for in the user input
-legal_keywords = ["divorce", "child custody", "domestic violence", "marriage", "alimony", "family law"]
+legal_keywords = ["divorce", "child custody", "domestic violence", "marriage", "alimony", "family law","criminal Law","land law","kanadyan marriage"]
 
 def extract_keyword(user_input):
     # Convert user input to lowercase
