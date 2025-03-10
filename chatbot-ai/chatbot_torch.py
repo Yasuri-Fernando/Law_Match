@@ -44,7 +44,7 @@ class LegalChatbotHF:
         return self.find_best_match(user_input)
 
     def run(self):
-        """Run the chatbot in an interactive loop."""
+        
         print("Welcome to the Sri Lankan Legal Information Chatbot!")
         print("Type 'exit' to end the conversation.\n")
         
