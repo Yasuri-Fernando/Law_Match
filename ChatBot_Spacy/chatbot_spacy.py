@@ -1,64 +1,54 @@
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import torch
 from sentence_transformers import SentenceTransformer, util
 
-class LegalChatbotHF: 
-    def _init_(self, csv_file: str):
-        """Initialize the chatbot with a legal Q&A database using Hugging Face embeddings."""
-        try:
-            self.df = pd.read_csv(csv_file, encoding='utf-8')
-            self.df = self.df.dropna(how='all')  # Remove empty rows
-            self.df.columns = self.df.columns.str.strip().str.lower()
+app = Flask(__name__)  # ✅ Corrected __name__
+CORS(app)  # Enable CORS for frontend-backend communication
 
-            if 'question' not in self.df.columns or 'answer' not in self.df.columns:
-                raise ValueError("CSV file must contain 'question' and 'answer' columns.")
+# Load LegalChatbot model
+class LegalChatbotHF:
+    def __init__(self, csv_file):  # ✅ Corrected __init__
+        """Initialize the chatbot with a legal Q&A database."""
+        self.df = pd.read_csv(csv_file, encoding="utf-8").dropna(how="all")
+        self.df.columns = self.df.columns.str.strip().str.lower()
 
-            self.df = self.df.fillna('')  # Fill missing values
-            
-            # Load a pre-trained model for embedding generation
-            self.model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
-            
-            # Compute embeddings for all questions
-            self.question_embeddings = self.model.encode(self.df['question'].tolist(), convert_to_tensor=True)
-            print("Legal Q&A database loaded successfully!")
-        except Exception as e:
-            print(f"Error loading CSV file: {e}")
-            raise
+        if "question" not in self.df.columns or "answer" not in self.df.columns:
+            raise ValueError("CSV file must contain 'question' and 'answer' columns.")
 
-    def find_best_match(self, query: str):
+        self.df.fillna("", inplace=True)
+        self.model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+        self.question_embeddings = self.model.encode(self.df["question"].tolist(), convert_to_tensor=True)
+        print("Legal Q&A database loaded successfully!")
+
+    def find_best_match(self, query):
         """Find the most relevant question using cosine similarity."""
-        try:
-            query_embedding = self.model.encode(query, convert_to_tensor=True)
-            similarities = util.pytorch_cos_sim(query_embedding, self.question_embeddings)[0]
-            best_match_idx = torch.argmax(similarities).item()
-            
-            if similarities[best_match_idx] < 0.5:
-                return "I'm sorry, I couldn't find an answer to your question. Please try rephrasing."
-            
-            return self.df.iloc[best_match_idx]['answer']
-        except Exception as e:
-            return f"Error processing your query: {str(e)}"
+        query_embedding = self.model.encode(query, convert_to_tensor=True)
+        similarities = util.pytorch_cos_sim(query_embedding, self.question_embeddings)[0]
+        best_match_idx = torch.argmax(similarities).item()
 
-    def get_response(self, user_input: str) -> str:
-        """Generate a response based on user input."""
-        return self.find_best_match(user_input)
+        if similarities[best_match_idx] < 0.5:
+            return "I'm sorry, I couldn't find an answer to your question. Please try rephrasing."
 
-    def run(self):
-        """Run the chatbot in an interactive loop."""
-        print("Welcome to the Sri Lankan Legal Information Chatbot!")
-        print("Type 'exit' to end the conversation.\n")
-        
-        while True:
-            user_input = input("You: ").strip()
-            if user_input.lower() == 'exit':
-                print("Thank you for using the Legal Chatbot. Goodbye!")
-                break
-            response = self.get_response(user_input)
-            print("\nChatbot:", response)
+        return self.df.iloc[best_match_idx]["answer"]
 
-if _name_ == "_main_":
+# Initialize chatbot
+chatbot = LegalChatbotHF("laws.csv")
+
+@app.route("/chatbot", methods=["POST"])
+def chatbot_response():
+    """API endpoint for chatbot responses."""
     try:
-        chatbot = LegalChatbotHF("laws.csv")
-        chatbot.run()
+        data = request.json
+        user_query = data.get("query", "").strip()
+        if not user_query:
+            return jsonify({"answer": "Please enter a valid question."}), 400
+
+        response = chatbot.find_best_match(user_query)
+        return jsonify({"answer": response})
     except Exception as e:
-        print(f"Error initializing chatbot: {e}")
+        return jsonify({"answer": f"Error: {str(e)}"}), 500
+
+if __name__ == "__main__":  # ✅ Corrected __name__
+    app.run(host="0.0.0.0", port=5000, debug=True)
