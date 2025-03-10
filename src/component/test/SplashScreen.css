@@ -1,0 +1,97 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Splash Screen Styling */
+.splash-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #151515; /* Ash Background */
+  animation: fadeOut 5s ease-in-out forwards;
+  z-index: 9999;
+}
+
+/* Logo Animation */
+.logo {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  animation: rotate 3s linear infinite, fadeIn 3s ease-in-out;
+}
+
+/* Title Styling */
+.title {
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+  margin-top: 20px;
+  text-align: center;
+  animation: slideIn 3s ease-in-out;
+}
+
+/* Loading Credits */
+.credits {
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  margin-top: 10px;
+  animation: fadeInCredits 3s ease-in-out;
+}
+
+/* Loader Animation */
+.loader-container {
+  margin-top: 20px;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  border-top: 5px solid #101210;
+  animation: rotate 1s linear infinite;
+}
+
+/* Keyframe Animations */
+
+/* Rotation Animation */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Fade Out Animation */
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Fade In Credits */
+@keyframes fadeInCredits {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
