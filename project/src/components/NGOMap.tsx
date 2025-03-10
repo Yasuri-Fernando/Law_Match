@@ -2,23 +2,22 @@ import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { ngos } from '../data/ngos';
-import type { NGO } from '../types/ngo';
+import { NGO } from '../types/ngo';
 import { MapPin, Filter } from 'lucide-react';
 
 // Fix for default marker icon
 import L from 'leaflet';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-interface IconDefault extends L.Icon.Default {
-  _getIconUrl?: string;
-}
-
-// Fix for default marker icon
-delete (L.Icon.Default.prototype as IconDefault)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
 });
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function NGOMap() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
