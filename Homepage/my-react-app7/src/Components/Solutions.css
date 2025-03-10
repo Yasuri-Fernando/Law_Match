@@ -1,0 +1,75 @@
+.solutions {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.solutions h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.solutions h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #fff;
+  margin: 10px auto 0;
+}
+
+.solution-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 1 calc(30% - 20px);
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.1); /* Glass effect */
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Thin white border */
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  min-height: 350px; /* Increased height */
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: justify;
+}
+
+.top-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none; /* Remove shadow */
+  border: none;
+  object-fit: cover;
+  background: transparent;
+}
