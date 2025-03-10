@@ -26,7 +26,7 @@
 
 .user-message {
   text-align: right;
-  background: rgb(255, 204, 0);
+  background: rgb(0, 170, 255);
   padding: 10px;
   margin: 5px;
   border-radius: 10px;
@@ -53,7 +53,7 @@
 
 .message-input button {
   padding: 10px;
-  background: #ffc400;
+  background: #0077ff;
   color: white;
   border: none;
 }
