@@ -4,12 +4,12 @@ import pandas as pd
 import torch
 from sentence_transformers import SentenceTransformer, util
 
-app = Flask(__name__)  # ✅ Corrected __name__
+app = Flask(__name__)  
 CORS(app)  # Enable CORS for frontend-backend communication
 
 # Load LegalChatbot model
 class LegalChatbotHF:
-    def __init__(self, csv_file):  # ✅ Corrected __init__
+    def __init__(self, csv_file):  
         """Initialize the chatbot with a legal Q&A database."""
         self.df = pd.read_csv(csv_file, encoding="utf-8").dropna(how="all")
         self.df.columns = self.df.columns.str.strip().str.lower()
@@ -33,7 +33,8 @@ class LegalChatbotHF:
 
         return self.df.iloc[best_match_idx]["answer"]
 
-# Initialize chatbot
+
+print("Chatbot is initializing...")
 chatbot = LegalChatbotHF("laws.csv")
 
 @app.route("/chatbot", methods=["POST"])
@@ -50,5 +51,5 @@ def chatbot_response():
     except Exception as e:
         return jsonify({"answer": f"Error: {str(e)}"}), 500
 
-if __name__ == "__main__":  # ✅ Corrected __name__
+if __name__ == "__main__":  
     app.run(host="0.0.0.0", port=5000, debug=True)
