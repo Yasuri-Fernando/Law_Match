@@ -1,0 +1,138 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: white;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.7); /* Transparent effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Thin white line */
+  z-index: 1000;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #d4af37; /* Gold hover effect */
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7rem 2rem 4rem;
+  background: radial-gradient(circle at 50% 1px, rgba(212, 191, 55, 0.219), rgba(0, 0, 0, 0.95) 50%);
+  min-height: 100vh;
+}
+
+
+.hero-content {
+  max-width: 45%;
+}
+
+.chat-bot-banner {
+  display: inline-flex;
+  align-items: center;
+  background: #333;
+  color: white;
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.chat-bot-banner span {
+  margin-right: 0.5rem;
+}
+
+.chat-bot-banner .arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.chat-bot-banner:hover .arrow {
+  transform: translateX(5px);
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  margin-top: 2rem;
+}
+
+button {
+  padding: 0.8rem 2rem;
+  margin-right: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background: #d4af37;
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background-color: #fcfcfc;
+  color: black;
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-img {
+  width: 450px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+}
+/* Fade transition for routing */
+.main {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.main.fade-out {
+  opacity: 0;
+}
+
