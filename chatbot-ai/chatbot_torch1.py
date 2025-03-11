@@ -44,7 +44,7 @@ class LegalChatbotHF:
         if user_input.lower() in ["hi", "hello", "hey"]:
             return "Hello! How can I assist you today?"
         response = self.find_best_match(user_input)
-        return response + "\n\nWhat can i do to help you?"
+        return response + "\n\nWhat do you want to know more about?"
 
     def run(self):
         """Run the chatbot in an interactive loop."""
