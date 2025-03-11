@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 import pandas as pd
 import os
 
@@ -16,12 +16,12 @@ except Exception as e:
 
 def get_steps(case_type):
     """Retrieve steps for a given case type."""
-    steps = df[df["case_type"].str.lower() == case_type.lower()].sort_values("step_number")
-    return steps["step_text"].tolist()
+    filtered_steps = df[df["case_type"].str.lower() == case_type.lower()].sort_values("step_number")
+    return filtered_steps["step_text"].tolist()
 
 @app.route('/')
 def index():
-    return 
+    return '''
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -63,7 +63,7 @@ def index():
         </script>
     </body>
     </html>
-    
+    '''
 
 @app.route('/get_steps', methods=['POST'])
 def get_steps_api():
@@ -76,8 +76,8 @@ def get_steps_api():
     
     # Generate Mermaid.js flowchart script
     mermaid_code = "graph TD;\n"
-    for i, step in enumerate(steps):
-        mermaid_code += f"step{i}[{step}]" + (" --> " if i < len(steps) - 1 else "")
+    for i in range(len(steps)):
+        mermaid_code += f"step{i}[{steps[i]}]" + (" --> " if i < len(steps) - 1 else "") + "\n"
     
     return jsonify({"steps": steps, "mermaid": mermaid_code})
 
