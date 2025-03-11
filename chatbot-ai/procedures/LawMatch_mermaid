@@ -19,7 +19,51 @@ def get_steps(case_type):
     filtered_steps = df[df["case_type"].str.lower() == case_type.lower()].sort_values("step_number")
     return filtered_steps["step_text"].tolist()
 
-
+@app.route('/')
+def index():
+    return '''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Law Match - Legal Procedures</title>
+        <script type="module">
+            import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+        <style>
+            body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+            input, button { margin: 10px; padding: 10px; }
+            #flowchart { margin-top: 20px; text-align: left; display: inline-block; }
+        </style>
+    </head>
+    <body>
+        <h2>Legal Procedures Guidance</h2>
+        <input type="text" id="query" placeholder="Enter your legal query...">
+        <button onclick="fetchSteps()">Search</button>
+        <div id="flowchart"></div>
+        
+        <script>
+            async function fetchSteps() {
+                const query = document.getElementById("query").value;
+                const response = await fetch("/get_steps", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query })
+                });
+                const data = await response.json();
+                if (data.error) {
+                    document.getElementById("flowchart").innerText = data.error;
+                } else {
+                    document.getElementById("flowchart").innerHTML = `<pre class="mermaid">${data.mermaid}</pre>`;
+                    mermaid.init(undefined, document.querySelectorAll(".mermaid"));
+                }
+            }
+        </script>
+    </body>
+    </html>
+    '''
 
 @app.route('/get_steps', methods=['POST'])
 def get_steps_api():
