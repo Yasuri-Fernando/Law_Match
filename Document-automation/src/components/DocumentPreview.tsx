@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormData } from '../types';
 
 interface DocumentPreviewProps {
@@ -19,12 +18,12 @@ export function DocumentPreview({ data, visible }: DocumentPreviewProps) {
     return new Date(date).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
   const renderStandardTemplate = () => (
-    <>
+    <div className="bg-white text-black p-8"> {/* Added bg-white and text-black */}
       <div className="text-right mb-8">
         <p>{formatDate(data.date)}</p>
         <p>Case Number: {data.caseNumber}</p>
@@ -57,11 +56,11 @@ export function DocumentPreview({ data, visible }: DocumentPreviewProps) {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 
   const renderDetailedTemplate = () => (
-    <>
+    <div className="bg-white text-black p-8"> {/* Added bg-white and text-black */}
       <div className="text-center mb-12">
         <h1 className="text-3xl font-bold uppercase mb-4">{data.documentType}</h1>
         <p className="text-gray-600">CASE NUMBER: {data.caseNumber}</p>
@@ -108,11 +107,11 @@ export function DocumentPreview({ data, visible }: DocumentPreviewProps) {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 
   const renderSimpleTemplate = () => (
-    <>
+    <div className="bg-white text-black p-8"> {/* Added bg-white and text-black */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-center mb-4">{data.documentType}</h1>
         <p className="text-center text-gray-600">Case: {data.caseNumber}</p>
@@ -143,7 +142,7 @@ export function DocumentPreview({ data, visible }: DocumentPreviewProps) {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 
   const renderTemplate = () => {
