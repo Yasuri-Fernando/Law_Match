@@ -1,0 +1,73 @@
+from flask import Flask, render_template, request, jsonify
+import pandas as pd
+
+app = Flask(__name__)
+
+# Load the dataset
+file_path = "knowldgegrapg.csv"
+df = pd.read_csv(file_path)
+
+def get_steps(case_type):
+    """Retrieve steps for a given case type."""
+    steps = df[df["case_type"].str.lower() == case_type.lower()].sort_values("step_number")
+    return steps["step_text"].tolist()
+
+@app.route('/')
+def index():
+    return '''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Law Match - Legal Procedures</title>
+        <script type="module">
+            import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    </head>
+    <body>
+        <h2>Legal Procedures Guidance</h2>
+        <input type="text" id="query" placeholder="Enter your legal query...">
+        <button onclick="fetchSteps()">Search</button>
+        <div id="flowchart"></div>
+        
+        <script>
+            async function fetchSteps() {
+                const query = document.getElementById("query").value;
+                const response = await fetch("/get_steps", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query })
+                });
+                const data = await response.json();
+                if (data.error) {
+                    document.getElementById("flowchart").innerText = data.error;
+                } else {
+                    document.getElementById("flowchart").innerHTML = `<pre class="mermaid">${data.mermaid}</pre>`;
+                    mermaid.init(undefined, document.querySelectorAll(".mermaid"));
+                }
+            }
+        </script>
+    </body>
+    </html>
+    '''
+
+@app.route('/get_steps', methods=['POST'])
+def get_steps_api():
+    data = request.get_json()
+    case_type = data.get("query", "").replace("how to do ", "").strip()
+    steps = get_steps(case_type)
+    
+    if not steps:
+        return jsonify({"error": "No steps found for this procedure."})
+    
+    # Generate Mermaid.js flowchart script
+    mermaid_code = "graph TD;\n"
+    for i in range(len(steps) - 1):
+        mermaid_code += f"{i}[{steps[i]}] --> {i+1}[{steps[i+1]}];\n"
+    
+    return jsonify({"steps": steps, "mermaid": mermaid_code})
+
+if __name__ == '__main__':
+    app.run(debug=True)
