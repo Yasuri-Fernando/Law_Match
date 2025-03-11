@@ -1,0 +1,57 @@
+id,case_type,step_number,step_text
+1,Civil Lawsuit,1,Start
+2,Civil Lawsuit,2,File Plaint at the Relevant Court
+3,Civil Lawsuit,3,Pay Court Fees
+4,Civil Lawsuit,4,Court Issues Summons to Defendant
+5,Civil Lawsuit,5,Defendant Files Answer?
+6,Civil Lawsuit,6,Proceed to Pre-Trial
+7,Civil Lawsuit,7,Default Judgment Issued
+8,Civil Lawsuit,8,Pre-Trial & Mediation
+9,Civil Lawsuit,9,Settlement?
+10,Civil Lawsuit,10,Proceed to Trial
+11,Civil Lawsuit,11,Trial & Evidence Review
+12,Civil Lawsuit,12,Court Issues Judgment
+13,Civil Lawsuit,13,Enforcement of Judgment (If Necessary)
+14,Civil Lawsuit,14,End
+15,Breach of Contract,1,Start
+16,Breach of Contract,2,File Plaint at the Relevant Court
+17,Breach of Contract,3,Pay Court Fees
+18,Breach of Contract,4,Court Issues Summons to Defendant
+19,Breach of Contract,5,Defendant Files Answer?
+20,Breach of Contract,6,Proceed to Pre-Trial
+21,Breach of Contract,7,Default Judgment Issued
+22,Breach of Contract,8,Pre-Trial & Mediation
+23,Breach of Contract,9,Settlement?
+24,Breach of Contract,10,Proceed to Trial
+25,Breach of Contract,11,Trial & Evidence Review
+26,Breach of Contract,12,Court Issues Judgment
+27,Breach of Contract,13,Enforcement of Judgment (If Necessary)
+28,Breach of Contract,14,End
+29,Property Damage,1,Start
+30,Property Damage,2,File Plaint at the Relevant Court
+31,Property Damage,3,Pay Court Fees
+32,Property Damage,4,Court Issues Summons to Defendant
+33,Property Damage,5,Defendant Files Answer?
+34,Property Damage,6,Proceed to Pre-Trial
+35,Property Damage,7,Default Judgment Issued
+36,Property Damage,8,Pre-Trial & Mediation
+37,Property Damage,9,Settlement?
+38,Property Damage,10,Proceed to Trial
+39,Property Damage,11,Trial & Evidence Review
+40,Property Damage,12,Court Issues Judgment
+41,Property Damage,13,Enforcement of Judgment (If Necessary)
+42,Property Damage,14,End
+43,Personal Injury,1,Start
+44,Personal Injury,2,File Plaint at the Relevant Court
+45,Personal Injury,3,Pay Court Fees
+46,Personal Injury,4,Court Issues Summons to Defendant
+47,Personal Injury,5,Defendant Files Answer?
+48,Personal Injury,6,Proceed to Pre-Trial
+49,Personal Injury,7,Default Judgment Issued
+50,Personal Injury,8,Pre-Trial & Mediation
+51,Personal Injury,9,Settlement?
+52,Personal Injury,10,Proceed to Trial
+53,Personal Injury,11,Trial & Evidence Review
+54,Personal Injury,12,Court Issues Judgment
+55,Personal Injury,13,Enforcement of Judgment (If Necessary)
+56,Personal Injury,14,End
