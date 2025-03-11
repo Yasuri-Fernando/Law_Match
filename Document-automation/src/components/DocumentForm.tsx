@@ -1,5 +1,5 @@
+import { Minus, Plus } from 'lucide-react';
 import React from 'react';
-import { Plus, Minus } from 'lucide-react';
 import { DocumentType, FormData, TemplateType } from '../types';
 
 interface DocumentFormProps {
@@ -51,7 +51,7 @@ export function DocumentForm({ onSubmit, initialData }: DocumentFormProps) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Document Type</label>
+          <label className="block text-sm font-medium text-amber-400">Document Type</label> {/* Changed color to amber */}
           <select
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             value={formData.documentType}
@@ -65,7 +65,7 @@ export function DocumentForm({ onSubmit, initialData }: DocumentFormProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">Template Style</label>
+          <label className="block text-sm font-medium text-amber-400">Template Style</label> {/* Changed color to amber */}
           <select
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             value={formData.templateType}
@@ -82,7 +82,7 @@ export function DocumentForm({ onSubmit, initialData }: DocumentFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Client Name</label>
+        <label className="block text-sm font-medium text-amber-400">Client Name</label> {/* Changed color to amber */}
         <input
           type="text"
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
@@ -93,7 +93,7 @@ export function DocumentForm({ onSubmit, initialData }: DocumentFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Case Number</label>
+        <label className="block text-sm font-medium text-amber-400">Case Number</label> {/* Changed color to amber */}
         <input
           type="text"
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
@@ -104,7 +104,7 @@ export function DocumentForm({ onSubmit, initialData }: DocumentFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Date</label>
+        <label className="block text-sm font-medium text-amber-400">Date</label> {/* Changed color to amber */}
         <input
           type="date"
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
@@ -115,7 +115,7 @@ export function DocumentForm({ onSubmit, initialData }: DocumentFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Parties Involved</label>
+        <label className="block text-sm font-medium text-amber-400 mb-2">Parties Involved</label> {/* Changed color to amber */}
         {formData.parties.map((party, index) => (
           <div key={index} className="flex gap-2 mb-2">
             <input
@@ -148,7 +148,7 @@ export function DocumentForm({ onSubmit, initialData }: DocumentFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Description</label>
+        <label className="block text-sm font-medium text-amber-400">Description</label> {/* Changed color to amber */}
         <textarea
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           rows={4}
