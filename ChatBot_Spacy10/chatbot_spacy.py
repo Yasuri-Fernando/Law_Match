@@ -2,18 +2,24 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
 import torch
-import time  #  Using time for precise tracking
+import time
+import threading
+import atexit
 from sentence_transformers import SentenceTransformer, util
 
-app = Flask(__name__)  
+app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend-backend communication
 
-#  Request counter
-request_count = 0  
+#  Request counter with thread safety
+request_count = 0
+request_lock = threading.Lock()
 
-# Load LegalChatbot model
+#  Track server uptime
+start_time = time.time()
+
+
 class LegalChatbotHF:
-    def __init__(self, csv_file):  
+    def __init__(self, csv_file):
         """Initialize the chatbot with a legal Q&A database."""
         try:
             self.df = pd.read_csv(csv_file, encoding="utf-8").dropna(how="all")
@@ -41,19 +47,22 @@ class LegalChatbotHF:
 
         return self.df.iloc[best_match_idx]["answer"]
 
+
 print("🚀 Chatbot is initializing...")
 try:
     chatbot = LegalChatbotHF("laws.csv")
 except RuntimeError:
     print("❌ Failed to start chatbot due to data loading issue.")
 
+
 @app.route("/chatbot", methods=["POST"])
 def chatbot_response():
     """API endpoint for chatbot responses."""
     global request_count
-    request_count += 1  
+    with request_lock:
+        request_count += 1
 
-    start_time = time.time()  #  Start tracking response time
+    start_time = time.time()
 
     try:
         data = request.get_json(silent=True)  #  Prevents errors on invalid JSON
@@ -69,7 +78,6 @@ def chatbot_response():
 
         response = chatbot.find_best_match(user_query)
 
-        #  Calculate response time
         response_time = time.time() - start_time
         print(f"[{timestamp}] Response time: {response_time:.2f} seconds")
 
@@ -78,15 +86,23 @@ def chatbot_response():
         print(f"❌ Error: {str(e)}")
         return jsonify({"answer": f"Error: {str(e)}"}), 500
 
-#  Health check endpoint with request count info
+
 @app.route("/health", methods=["GET"])
 def health_check():
     """Health check endpoint to verify if the API is running."""
-    return jsonify({"status": "OK", "total_requests": request_count}), 200
+    uptime = time.time() - start_time
+    return jsonify({"status": "OK", "total_requests": request_count, "uptime": f"{uptime:.2f} sec"}), 200
 
-if __name__ == "__main__":  
-    print("Server is starting on port 5000...")
+
+def shutdown_server():
+    """Graceful shutdown handler."""
+    print(" Server shutting down gracefully.")
+
+
+if __name__ == "__main__":
+    print(" Server is starting on port 5000...")
+    atexit.register(shutdown_server)  #  Ensures cleanup on exit
     try:
         app.run(host="0.0.0.0", port=5000, debug=True)
     except KeyboardInterrupt:
-        print("🛑 Server shutting down gracefully.")
+        print(" Server shutting down due to keyboard interrupt.")
