@@ -33,7 +33,7 @@ class LegalChatbotHF:
             best_match_idx = torch.argmax(similarities).item()
             
             if similarities[best_match_idx] < 0.5:
-                return "I'm sorry, I couldn't find an answer to your question. Please try rephrasing."
+                return "I'm sorry, I couldn't find an answer to your question. Please try again with your question."
             
             return self.df.iloc[best_match_idx]['answer']
         except Exception as e:
