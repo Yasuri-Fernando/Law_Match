@@ -1,8 +1,12 @@
 from flask import Flask, request, jsonify
 import pandas as pd
 import os
+import logging
 
 app = Flask(__name__)
+
+# Configure logging for error tracking
+logging.basicConfig(level=logging.DEBUG)
 
 # Load the dataset safely
 file_path = os.path.abspath("knowldgegrapg.csv")
@@ -11,11 +15,14 @@ try:
     if df.empty:
         raise ValueError("Dataset is empty")
 except Exception as e:
-    print(f"Error loading dataset: {e}")
+    logging.error(f"Error loading dataset: {e}")
     df = pd.DataFrame(columns=["case_type", "step_number", "step_text"])  # Create an empty dataframe
 
 def get_steps(case_type):
     """Retrieve steps for a given case type."""
+    if df.empty:
+        return []
+    # Filter the dataframe and sort steps
     filtered_steps = df[df["case_type"].str.lower() == case_type.lower()].sort_values("step_number")
     return filtered_steps["step_text"].tolist()
 
@@ -35,7 +42,9 @@ def index():
         <style>
             body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
             input, button { margin: 10px; padding: 10px; }
-            #flowchart { margin-top: 20px; text-align: left; display: inline-block; }
+            #flowchart { margin-top: 20px; text-align: left; display: inline-block; width: 80%; margin-left: auto; margin-right: auto; }
+            #query { width: 80%; padding: 10px; }
+            h2 { color: #333; }
         </style>
     </head>
     <body>
@@ -69,6 +78,11 @@ def index():
 def get_steps_api():
     data = request.get_json()
     case_type = data.get("query", "").lower().replace("how to do ", "").strip()
+
+    if not case_type:
+        return jsonify({"error": "Please provide a valid case type."})
+
+    # Get steps for the case type
     steps = get_steps(case_type)
     
     if not steps:
@@ -76,8 +90,11 @@ def get_steps_api():
     
     # Generate Mermaid.js flowchart script
     mermaid_code = "graph TD;\n"
-    for i in range(len(steps)):
-        mermaid_code += f"step{i}[{steps[i]}]" + (" --> " if i < len(steps) - 1 else "") + "\n"
+    for i, step in enumerate(steps):
+        mermaid_code += f"step{i}[{step}]"
+        if i < len(steps) - 1:
+            mermaid_code += " --> "
+        mermaid_code += "\n"
     
     return jsonify({"steps": steps, "mermaid": mermaid_code})
 
