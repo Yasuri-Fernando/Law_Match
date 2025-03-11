@@ -1,11 +1,18 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
-# Load the dataset
-file_path = "knowldgegrapg.csv"
-df = pd.read_csv(file_path)
+# Load the dataset safely
+file_path = os.path.abspath("knowldgegrapg.csv")
+try:
+    df = pd.read_csv(file_path)
+    if df.empty:
+        raise ValueError("Dataset is empty")
+except Exception as e:
+    print(f"Error loading dataset: {e}")
+    df = pd.DataFrame(columns=["case_type", "step_number", "step_text"])  # Create an empty dataframe
 
 def get_steps(case_type):
     """Retrieve steps for a given case type."""
@@ -25,6 +32,11 @@ def index():
             import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
             mermaid.initialize({ startOnLoad: true });
         </script>
+        <style>
+            body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+            input, button { margin: 10px; padding: 10px; }
+            #flowchart { margin-top: 20px; text-align: left; display: inline-block; }
+        </style>
     </head>
     <body>
         <h2>Legal Procedures Guidance</h2>
@@ -56,7 +68,7 @@ def index():
 @app.route('/get_steps', methods=['POST'])
 def get_steps_api():
     data = request.get_json()
-    case_type = data.get("query", "").replace("how to do ", "").strip()
+    case_type = data.get("query", "").lower().replace("how to do ", "").strip()
     steps = get_steps(case_type)
     
     if not steps:
@@ -64,8 +76,8 @@ def get_steps_api():
     
     # Generate Mermaid.js flowchart script
     mermaid_code = "graph TD;\n"
-    for i in range(len(steps) - 1):
-        mermaid_code += f"{i}[{steps[i]}] --> {i+1}[{steps[i+1]}];\n"
+    for i, step in enumerate(steps):
+        mermaid_code += f"step{i}[{step}]" + (" --> " if i < len(steps) - 1 else "")
     
     return jsonify({"steps": steps, "mermaid": mermaid_code})
 
