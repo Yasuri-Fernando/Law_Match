@@ -104,7 +104,7 @@ export default function HomePage() {
               <BookOpen className="h-7 w-7 text-black-700" />
             </div>
             <h3 className="text-xl font-semibold mb-3 text-gray-800">District Information</h3>
-            <p className="text-gray-600">
+            <p className="text-black-600">
               Browse courts by district to understand the judicial structure in different regions of Sri Lanka.
             </p>
           </div>
