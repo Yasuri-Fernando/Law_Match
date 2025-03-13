@@ -14,8 +14,8 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <Building2 className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-bold text-gray-800">SL Court Locator</span>
+              <Building2 className="h-8 w-8 text-black-600" />
+              <span className="ml-2 text-xl font-bold text-gray-800">LawMatch Court Locator</span>
             </Link>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
