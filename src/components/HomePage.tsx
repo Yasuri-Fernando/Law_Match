@@ -64,7 +64,7 @@ export default function HomePage() {
               <MapPin className="h-7 w-7 text-black-700" />
             </div>
             <h3 className="text-xl font-semibold mb-3 text-gray-800">Locate Nearby Courts</h3>
-            <p className="text-gray-600">
+            <p className="text-black-600">
               Find courts near your location with our interactive map and geolocation features. Get directions and distance information.
             </p>
           </div>
