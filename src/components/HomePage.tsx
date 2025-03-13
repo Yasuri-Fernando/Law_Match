@@ -94,7 +94,7 @@ export default function HomePage() {
               <Scale className="h-7 w-7 text-black-700" />
             </div>
             <h3 className="text-xl font-semibold mb-3 text-gray-800">Legal Resources</h3>
-            <p className="text-gray-600">
+            <p className="text-black-600">
               Find essential information about the Sri Lankan judicial system, court procedures, and legal resources.
             </p>
           </div>
