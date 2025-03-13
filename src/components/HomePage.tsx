@@ -114,7 +114,7 @@ export default function HomePage() {
               <HelpCircle className="h-7 w-7 text-black-700" />
             </div>
             <h3 className="text-xl font-semibold mb-3 text-gray-800">Help & Support</h3>
-            <p className="text-gray-600">
+            <p className="text-black-600">
               Get assistance with navigating the court system and finding the right court for your needs.
             </p>
           </div>
