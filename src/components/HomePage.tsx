@@ -74,7 +74,7 @@ export default function HomePage() {
               <Building2 className="h-7 w-7 text-black-700" />
             </div>
             <h3 className="text-xl font-semibold mb-3 text-gray-800">Comprehensive Database</h3>
-            <p className="text-gray-600">
+            <p className="text-black-600">
               Access information about all types of courts across Sri Lanka, from Supreme Court to Magistrate Courts in every district.
             </p>
           </div>
