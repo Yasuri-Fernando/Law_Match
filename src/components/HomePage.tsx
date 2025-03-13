@@ -59,7 +59,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+          <div className="bg-gray-500 p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
             <div className="bg-gray-100 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-6">
               <MapPin className="h-7 w-7 text-black-700" />
             </div>
