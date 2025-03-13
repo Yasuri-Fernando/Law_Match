@@ -84,7 +84,7 @@ export default function HomePage() {
               <Gavel className="h-7 w-7 text-black-700" />
             </div>
             <h3 className="text-xl font-semibold mb-3 text-gray-800">Court Type Filtering</h3>
-            <p className="text-gray-600">
+            <p className="text-black-600">
               Filter courts by type to find exactly what you're looking for, whether it's a High Court, District Court, or Magistrate Court.
             </p>
           </div>
