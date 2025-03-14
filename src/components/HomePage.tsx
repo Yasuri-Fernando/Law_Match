@@ -131,7 +131,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               to="/courts" 
-              className="inline-flex items-center justify-center bg-blue-700 text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-blue-600 transition-colors"
+              className="inline-flex items-center justify-center bg-gray-700 text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-blue-600 transition-colors"
             >
               Find Courts
               <ArrowRight className="ml-2 h-5 w-5" />
