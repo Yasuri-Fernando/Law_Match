@@ -138,7 +138,7 @@ export default function HomePage() {
             </Link>
             <Link 
               to="/ngos" 
-              className="inline-flex items-center justify-center bg-green-600 text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-green-500 transition-colors"
+              className="inline-flex items-center justify-center bg-gray-700 text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-green-500 transition-colors"
             >
               Find NGOs
               <ArrowRight className="ml-2 h-5 w-5" />
