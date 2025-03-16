@@ -154,7 +154,7 @@ export default function HomePage() {
             <div>
               <h3 className="text-xl font-semibold mb-4 flex items-center">
                 <Building2 className="h-6 w-6 mr-2" />
-                Sri Lanka Court Locator
+                LawMatch Court Locator
               </h3>
               <p className="text-gray-400">
                 A comprehensive platform to help you navigate the Sri Lankan judicial system.
