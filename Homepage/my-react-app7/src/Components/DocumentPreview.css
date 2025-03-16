@@ -1,0 +1,124 @@
+/* src/Components/DocumentPreview.css */
+
+/* Common styles for all templates */
+.preview-template {
+  background-color: white;
+  color: black;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.preview-template h1,
+.preview-template h2 {
+  color: #000000;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.preview-template h1 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.preview-template h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.preview-template p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.preview-template ul {
+  list-style-type: disc;
+  margin-left: 30px;
+}
+
+.preview-template .document-header {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.preview-template .document-header p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.preview-template .signature-line {
+  margin-top: 40px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.preview-template .signature-line p {
+  margin-bottom: 10px;
+}
+
+/* Standard Template Specific Styles */
+.standard-template {
+  border: 1px solid #000;
+}
+
+.standard-template h1 {
+  font-size: 2.5rem;
+}
+
+.standard-template .document-header {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.standard-template ul {
+  font-size: 1.1rem;
+}
+
+/* Detailed Template Specific Styles */
+.detailed-template {
+  border: 2px solid #000;
+  padding: 30px;
+}
+
+.detailed-template h1 {
+  font-size: 3rem;
+}
+
+.detailed-template h2 {
+  font-size: 1.75rem;
+}
+
+.detailed-template .document-header {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.detailed-template ul {
+  font-size: 1.2rem;
+}
+
+/* Simple Template Specific Styles */
+.simple-template {
+  border: 1px dashed #000;
+  padding: 20px;
+}
+
+.simple-template h1 {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.simple-template h2 {
+  font-size: 1.25rem;
+}
+
+.simple-template p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.simple-template ul {
+  font-size: 1rem;
+}
