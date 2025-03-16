@@ -25,7 +25,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 to="/courts" 
-                className="inline-flex items-center justify-center bg-white text-blue-700 px-6 py-3 rounded-lg font-medium text-lg hover:bg-blue-50 transition-colors"
+                className="inline-flex items-center justify-center bg-white text-gray-700 px-6 py-3 rounded-lg font-medium text-lg hover:bg-gray-50 transition-colors"
               >
                 <Search className="mr-2 h-5 w-5" />
                 Find Courts
