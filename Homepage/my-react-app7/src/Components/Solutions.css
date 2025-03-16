@@ -1,3 +1,6 @@
+/* src/Components/Solutions.css */
+
+/* Ensuring the proper layout for the Document Automation card */
 .solutions {
   text-align: center;
   padding: 60px 20px;
@@ -19,16 +22,18 @@
   margin: 10px auto 0;
 }
 
+/* Make sure cards have proper space */
 .solution-cards {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center the cards */
   gap: 20px;
   flex-wrap: wrap;
 }
 
+/* General card styles */
 .card {
-  flex: 1 1 calc(30% - 20px);
-  padding: 40px 20px;
+  flex: 1 1 calc(25% - 20px); /* Make cards smaller (25% width instead of 30%) */
+  padding: 30px 20px; /* Reduced padding */
   background: rgba(255, 255, 255, 0.1); /* Glass effect */
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.2); /* Thin white border */
@@ -36,9 +41,9 @@
   backdrop-filter: blur(12px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  min-height: 350px; /* Increased height */
+  min-height: 300px; /* Reduced the minimum height */
+  margin-bottom: 20px; /* Ensure cards are evenly spaced */
 }
-
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
@@ -46,14 +51,14 @@
 }
 
 .card img {
-  width: 80px;
-  height: 80px;
+  width: 60px; /* Make image smaller */
+  height: 60px; /* Make image smaller */
   margin-bottom: 20px;
 }
 
 .card h3 {
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.25rem; /* Reduced font size */
   margin-bottom: 10px;
 }
 
@@ -64,12 +69,82 @@
   text-align: justify;
 }
 
-.top-image {
-  width: 100%;
-  height: auto;
-  border-radius: 0;
-  box-shadow: none; /* Remove shadow */
+/* Document Automation Card Specific Styles */
+.document-automation {
+  background: rgba(255, 255, 255, 0.1); /* Glass effect */
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Thin white border */
+  padding: 30px 20px; /* Reduced padding */
+  text-align: center;
+  min-height: 300px; /* Reduced height */
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 650px; /* Ensuring it behaves like other cards */
+  margin-top: 30px; /* Adds some space above this card */
+  margin-bottom: 20px;
+  margin-left: 390px;
+  justify-content: space-between; /* Matching spacing with other cards */
+}
+
+.document-automation:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+/* Image for Document Automation card */
+.document-automation img {
+  width: 60px; /* Same as other cards */
+  height: 60px; /* Same as other cards */
+  margin-bottom: 20px;
+}
+
+/* Link Override */
+.document-automation a {
+  text-decoration: none; /* Remove underline */
+}
+
+/* Button Style for Document Automation */
+.cta-button {
+  background-color:#fff; /* Gold color */
+  color: black;
+  padding: 10px 20px;
   border: none;
-  object-fit: cover;
-  background: transparent;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.cta-button:hover {
+  background-color:rgba(255, 223, 14, 0.801); /* Darker gold on hover */
+}
+
+.cta-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 165, 0, 0.5); /* Amber glow on focus */
+}
+
+.cta-button:active {
+  background-color: #e89b00; /* Slightly darker when active */
+}
+
+/* Text inside Document Automation Card */
+.document-automation h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.document-automation p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: justify;
+  margin-top: 10px;
+  padding: 10px 0; /* Adding padding to space out the content */
 }
