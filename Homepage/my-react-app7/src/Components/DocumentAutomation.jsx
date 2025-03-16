@@ -63,7 +63,7 @@ export function DocumentAutomation() {
               <div className="hero-badge">Enterprise Solution</div>
               <h1>Transform Your Legal Documentation Process</h1>
               <p className="hero-subtitle">Create sophisticated, court-ready documents with our premium automation platform</p>
-              <button className="cta-button" onClick={() => setShowGenerator(true)}>
+              <button className="start-create" onClick={() => setShowGenerator(true)}>
                 Start Creating Documents <ArrowRight size={20} className="button-icon" />
               </button>
             </div>
