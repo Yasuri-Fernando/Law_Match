@@ -33,7 +33,7 @@ textarea {
   font-size: 1rem;
   border-radius: 5px;
   border: 1px solid #ddd;
-  background-color: rgb(15, 14, 14); /* Ensure the background is white */
+  background-color: rgb(15, 14, 14); /* Ensure the background is dark */
   color: #f9f3f3; /* Ensure the text is visible */
 }
 
@@ -58,8 +58,8 @@ select::-ms-expand {
   display: none; /* Hide the default dropdown icon for Internet Explorer */
 }
 
-/* Style for the dropdown button */
-button {
+/* Specific Button Styles for DocumentForm */
+.document-form button.submit-button {
   background-color: #4caf50;
   color: white;
   padding: 10px 20px;
@@ -70,22 +70,22 @@ button {
   border: none;
 }
 
-button:hover {
+.document-form button.submit-button:hover {
   background-color: #45a049;
 }
 
-button[type="submit"] {
+.document-form button.submit-button[type="submit"] {
   padding: 12px 24px;
   font-size: 1.125rem;
 }
 
-button[type="button"] {
+.document-form button.delete-button {
   background-color: #e74c3c;
   padding: 5px 10px;
   font-size: 1rem;
 }
 
-button[type="button"]:hover {
+.document-form button.delete-button:hover {
   background-color: #c0392b;
 }
 
@@ -102,6 +102,6 @@ button[type="button"]:hover {
   color: white;
 }
 
-button[type="button"]:hover {
+.party-input button:hover {
   background-color: #c0392b;
 }
