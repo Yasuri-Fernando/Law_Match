@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"; // React Router setup
 import "./App.css"; // Import main CSS file
+import DocumentAutomation from "./Components/DocumentAutomation"; // Import DocumentAutomation component
 import Footer from "./Components/Footer"; // Import Footer component
 import Header from "./Components/Header"; // Import Header component
 import LandingPage from "./Components/LandingPage"; // Landing Page Component
@@ -23,6 +24,10 @@ function App() {
 
         {/* Other Routes with Header and Footer */}
         <Route path="/solutions" element={<><Header /><Solutions /><Footer /></>} />
+
+        {/* Document Automation Route */}
+        <Route path="/document-automation" element={<><DocumentAutomation /></>} />
+        
       </Routes>
     </Router>
   );
