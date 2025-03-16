@@ -1,3 +1,5 @@
+//import { jsPDF } from "jspdf"; // Import jsPDF
+import html2pdf from 'html2pdf.js';
 import { ArrowRight, CheckCircle, Clock, Download, FileText, Shield } from 'lucide-react';
 import React, { useState } from 'react';
 import './DocumentAutomation.css';
@@ -51,8 +53,20 @@ export function DocumentAutomation() {
   };
 
   const handleDownloadPDF = () => {
-    // PDF generation logic here
+    const element = document.getElementById('document-preview'); // Get the document preview element
+    if (element) {
+      const options = {
+        margin: 10,
+        filename: 'legal-document.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      };
+      html2pdf().from(element).set(options).save(); // Generate and save the PDF
+    }
   };
+ 
+  
 
   return (
     <div className="document-automation-container">
@@ -104,10 +118,8 @@ export function DocumentAutomation() {
         </>
       ) : (
         <div className="generator-section">
-          
-            <h1 className="generator-header">Premium Document Generator</h1>
-            <p>Create court-ready legal documents with enterprise-grade automation</p>
-          
+          <h1 className="generator-header">Premium Document Generator</h1>
+          <p>Create court-ready legal documents with enterprise-grade automation</p>
           
           <div className="workspace-container">
             <DocumentForm onSubmit={handleSubmit} initialData={formData} />
