@@ -1,3 +1,4 @@
+/* src/Components/DocumentForm.tsx */
 import { Minus, Plus } from 'lucide-react';
 import React from 'react';
 import { DocumentType, FormData, TemplateType } from '../types';
@@ -118,13 +119,13 @@ export function DocumentForm({ onSubmit, initialData }: DocumentFormProps) {
               required
             />
             {index > 0 && (
-              <button type="button" onClick={() => removeParty(index)}>
+              <button type="button" className="delete-button" onClick={() => removeParty(index)}>
                 <Minus />
               </button>
             )}
           </div>
         ))}
-        <button type="button" onClick={addParty}>
+        <button type="button" className="submit-button" onClick={addParty}>
           <Plus />
           Add Party
         </button>
@@ -140,7 +141,7 @@ export function DocumentForm({ onSubmit, initialData }: DocumentFormProps) {
         />
       </div>
 
-      <button type="submit">Generate Document</button>
+      <button type="submit" className="submit-button">Generate Document</button>
     </form>
   );
 }
