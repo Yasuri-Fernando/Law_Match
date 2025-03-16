@@ -19,7 +19,11 @@ const Solutions = () => {
             by understanding natural language inputs and providing tailored
             assistance.
           </p>
+          <Link to="/ai-chat-bot">
+            <button className="cta-button">Start Using AI Chat Bot</button>
+          </Link>
         </div>
+
         <div className="card">
           <img
             src="src/assets/law_insight.png"
@@ -31,7 +35,11 @@ const Solutions = () => {
             A powerful tool that analyzes user queries to fetch and simplify
             relevant laws, precedents, and legal acts.
           </p>
+          <Link to="/law-insight">
+            <button className="cta-button">Start Using Law Insight</button>
+          </Link>
         </div>
+
         <div className="card">
           <img
             src="src/assets/location_service.png"
@@ -43,11 +51,19 @@ const Solutions = () => {
             A geolocation-enabled feature that helps users find nearby legal
             resources, including court houses and legal aid centers.
           </p>
+          <Link to="/location-service">
+            <button className="cta-button">Find Legal Resources</button>
+          </Link>
         </div>
       </div>
 
       {/* New Document Automation Card */}
-      <div className="card">
+      <div className="document-automation">
+        <img
+          src="src/assets/document_automation.png"
+          alt="Document Automation"
+          className="card-img"
+        />
         <h3>Document Automation</h3>
         <p>
           Easily generate professional legal documents in minutes with our
