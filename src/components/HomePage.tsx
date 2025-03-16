@@ -32,14 +32,14 @@ export default function HomePage() {
               </Link>
               <Link 
                 to="/ngos" 
-                className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-lg hover:bg-blue-500 transition-colors"
+                className="inline-flex items-center justify-center bg-gray-600 text-white px-6 py-3 rounded-lg font-medium text-lg hover:bg-gray-500 transition-colors"
               >
                 <Building2 className="mr-2 h-5 w-5" />
                 Find NGOs
               </Link>
               <a 
                 href="#features" 
-                className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-lg hover:bg-blue-500 transition-colors"
+                className="inline-flex items-center justify-center bg-gray-600 text-white px-6 py-3 rounded-lg font-medium text-lg hover:bg-gray-500 transition-colors"
               >
                 Learn More
                 <ArrowRight className="ml-2 h-5 w-5" />
