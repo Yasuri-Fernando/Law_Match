@@ -1,5 +1,3 @@
-/* src/Components/Solutions.css */
-
 /* Ensuring the proper layout for the Document Automation card */
 .solutions {
   text-align: center;
@@ -25,14 +23,16 @@
 /* Make sure cards have proper space */
 .solution-cards {
   display: flex;
-  justify-content: center; /* Center the cards */
+  justify-content: space-between; /* Ensures cards are spread evenly */
   gap: 20px;
-  flex-wrap: wrap;
+  flex-wrap: no-wrap; /* Disable wrapping of cards */
+  flex-direction: row; /* Ensure all cards stay in the same row */
+  align-items: stretch; /* Ensures all cards are aligned vertically */
 }
 
 /* General card styles */
 .card {
-  flex: 1 1 calc(25% - 20px); /* Make cards smaller (25% width instead of 30%) */
+  flex: 1 1 calc(25% - 20px); /* Ensures each card takes up 25% of the container */
   padding: 30px 20px; /* Reduced padding */
   background: rgba(255, 255, 255, 0.1); /* Glass effect */
   border-radius: 15px;
@@ -41,9 +41,10 @@
   backdrop-filter: blur(12px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  min-height: 300px; /* Reduced the minimum height */
+  min-height: 300px; /* Ensure consistent height across all cards */
   margin-bottom: 20px; /* Ensure cards are evenly spaced */
 }
+
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
@@ -79,10 +80,9 @@
   min-height: 300px; /* Reduced height */
   backdrop-filter: blur(12px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 650px; /* Ensuring it behaves like other cards */
+  width: 100%; /* Ensuring it behaves like other cards */
   margin-top: 30px; /* Adds some space above this card */
   margin-bottom: 20px;
-  margin-left: 390px;
   justify-content: space-between; /* Matching spacing with other cards */
 }
 
