@@ -9,10 +9,7 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
-          <div className="chat-bot-banner">
-            <span>Try our AI Chat Bot</span>
-            <span className="arrow">→</span>
-          </div>
+          
           <h1>How AI is Redefining</h1>
           <h2>Revolutionize your legal journey</h2>
           <p>
