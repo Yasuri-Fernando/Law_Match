@@ -55,10 +55,24 @@ const Solutions = () => {
             <button className="cta-button">Find Legal Resources</button>
           </Link>
         </div>
-      </div>
 
-      {/* New Document Automation Card */}
-      <div className="document-automation">
+        {/* New Graph Feature Card */}
+        <div className="card">
+          <img
+            src="src/assets/graph_feature.png" // Add your graph feature image here
+            alt="Graph Feature"
+            className="card-img"
+          />
+          <h3>Graph Feature</h3>
+          <p>
+            Visualize your legal data and insights with our advanced graphing
+            tool, providing meaningful charts and reports for better analysis.
+          </p>
+          <Link to="/graph-feature">
+            <button className="cta-button">Start Using Graph Feature</button>
+          </Link>
+        </div>
+        <div className="card ">
         <img
           src="src/assets/document_automation.png"
           alt="Document Automation"
@@ -74,6 +88,10 @@ const Solutions = () => {
           <button className="cta-button">Start Automating Documents</button>
         </Link>
       </div>
+      </div>
+
+      
+      
     </section>
   );
 };
