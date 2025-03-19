@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { assets } from '../assets/assets';
 import { AdminContext } from '../context/AdminContext';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [state, setState] = useState('Admin');
@@ -14,16 +14,22 @@ const Login = () => {
         event.preventDefault();
         try {
             if (state === 'Admin') {
-                const { data } = await axios.post(`${backendUrl}/api/admin/login`, { email, password });
-                if (data.success) {
-                    localStorage.setItem('aToken',data.token)
-                    setAToken(data.token);
+                const response = await axios.post(`${backendUrl}/api/admin/login`, { email, password });
+                const { data } = response;
                 
+                console.log('Backend response:', data);
+
+                if (data.success) {
+                    localStorage.setItem('aToken', data.token);
+                    //console.log('Stored token:', localStorage.getItem('aToken'));
+
+                    setAToken(data.token);
                 } else {
-                toast.error(data.message)
+                    toast.error(data.message);
                 }
-            } else {  
-            }  
+            } else {
+                // Handle Lawyer login logic here if needed
+            }
         } catch (error) {
             console.error('Login error:', error);
         }
