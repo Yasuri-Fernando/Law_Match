@@ -58,13 +58,23 @@ const onSubmitHandler = async (event) => {
     );
 
     if (data.success) {
-      toast.success(data.message);
+      toast.success(data.message)
+      setLawImg(false)
+      setName('')
+      setPassword('')
+      setEmail('')
+      setAddress1('')
+      setAddress2('')
+      setDegree('')
+      setAbout('')
+      setFees('')
     } else {
       toast.error(data.message);
     }
   } catch (error) {
     //console.error("Error adding lawyer:", error);
-    //toast.error("There was an error while adding the lawyer.");
+    toast.error(error.message)
+    console.log(error)
   }
 };
 
