@@ -36,7 +36,7 @@ function Home() {
               Find Courts Across Sri Lanka
             </h1>
             <p className="text-xl text-white mb-8 max-w-2xl">
-              Locate and access information about courts throughout Sri Lanka with our comprehensive court locator system.
+            Easily find courts and legal resource centers across Sri Lanka with our comprehensive court locator system.
             </p>
             <div className="flex space-x-4">
               <Link to="/courts" className="bg-white text-black-900 px-8 py-3 rounded-lg font-semibold hover:bg-white-100 flex items-center">
