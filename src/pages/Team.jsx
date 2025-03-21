@@ -85,7 +85,7 @@ function SocialLink({ href, icon: Icon }) {
 
 function TeamMember({ member }) {
   return (
-    <div className="w-64 bg-gray-300 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+    <div className="w-60 bg-gray-300 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
       <div className="relative pt-8 px-8">
         <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden ring-4 ring-blue-100">
           <img 
