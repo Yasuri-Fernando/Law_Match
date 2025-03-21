@@ -19,6 +19,7 @@ function Navbar() {
             <Link to="/courts" className="text-gray-600 hover:text-gray-900">Court Locator</Link>
             <Link to="/ngos" className="text-gray-600 hover:text-gray-900">NGO Directory</Link>
             <Link to="/about" className="text-gray-600 hover:text-gray-900">About</Link>
+            <Link to="/team" className="text-gray-600 hover:text-gray-900">Our Team</Link>
           </div>
         </div>
       </div>
