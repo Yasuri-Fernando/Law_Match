@@ -76,7 +76,7 @@ function SocialLink({ href, icon: Icon }) {
       href={href} 
       target="_blank" 
       rel="noopener noreferrer"
-      className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+      className="text-gray-600 hover:text-black-600 transition-colors duration-300"
     >
       <Icon size={20} />
     </a>
@@ -115,8 +115,8 @@ function Team() {
     <div className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Our team is composed of passionate individuals who believe in making legal services more accessible, transparent, and efficient.
+        <p className="text-xl text-black-600 max-w-2xl mx-auto">
+          We are composed of passionate individuals who believe in making legal services more accessible, transparent, and efficient.
         </p>
       </div>
 
