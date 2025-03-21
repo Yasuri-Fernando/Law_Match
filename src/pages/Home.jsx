@@ -35,7 +35,7 @@ function Home() {
             <h1 className="text-5xl font-bold text-black mb-6">
               Find Courts Across Sri Lanka
             </h1>
-            <p className="text-xl text-white mb-8 max-w-2xl">
+            <p className="text-xl text-white font-bold  mb-8 max-w-2xl whitespace-nowrap">
             Easily find courts and legal resource centers across Sri Lanka with our comprehensive court locator system.
             </p>
             <div className="flex space-x-4">
