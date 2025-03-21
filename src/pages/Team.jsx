@@ -76,7 +76,7 @@ function SocialLink({ href, icon: Icon }) {
       href={href} 
       target="_blank" 
       rel="noopener noreferrer"
-      className="text-gray-600 hover:text-black-600 transition-colors duration-300"
+      className="text-gray-600 hover:text-black transition-colors duration-300"
     >
       <Icon size={20} />
     </a>
@@ -111,22 +111,23 @@ function TeamMember({ member }) {
 }
 
 function Team() {
-  return (
-    <div className="max-w-7xl mx-auto px-4 py-16">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h1>
-        <p className="text-xl text-black-600 max-w-2xl mx-auto">
-          We are composed of passionate individuals who believe in making legal services more accessible, transparent, and efficient.
-        </p>
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h1>
+          <p className="text-xl text-black max-w-2xl mx-auto">
+            We are composed of passionate individuals who believe in making legal services more accessible, transparent, and efficient.
+          </p>
+        </div>
+  
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {teamMembers.map((member) => (
+            <TeamMember key={member.name} member={member} />
+          ))}
+        </div>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {teamMembers.map((member) => (
-          <TeamMember key={member.name} member={member} />
-        ))}
-      </div>
-    </div>
-  );
-}
+    );
+  }
+  
 
 export default Team;
