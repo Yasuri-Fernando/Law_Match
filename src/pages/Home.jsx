@@ -5,7 +5,7 @@ import courttype2 from "../assets/courttype2.jpg";
 import legal from "../assets/legal.png";
 import district from "../assets/district.jpg";
 import help from "../assets/help.png";
-import bgImage from "../assets/background2.jpg";
+import bgImage from "../assets/background3.jpeg";
 
 
 function FeatureCard({ icon, title, description }) {
