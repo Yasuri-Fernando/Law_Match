@@ -32,7 +32,7 @@ function Home() {
     >
         <div className="absolute inset-0 bg-black bg-opacity-10">
           <div className="container mx-auto px-4 h-full flex flex-col justify-center">
-            <h1 className="text-5xl font-bold text-white mb-6">
+            <h1 className="text-5xl font-bold text-black mb-6">
               Find Courts Across Sri Lanka
             </h1>
             <p className="text-xl text-white mb-8 max-w-2xl">
