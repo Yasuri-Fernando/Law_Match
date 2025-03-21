@@ -53,7 +53,7 @@ const onSubmitHandler = async (event) => {
     }
 
     // Send data to the backend
-    const { data } = await axios.post(backendUrl + '/api/admin/add-lawyer', formData,{headers:{aToken}}
+    const { data } = await axios.post(backendUrl + '/api/admin/add-lawyer', formData,{headers:{Authorization: `Bearer ${aToken}`}}
 
     );
 
