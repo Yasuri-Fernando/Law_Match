@@ -51,9 +51,7 @@ function Home() {
                 </svg>
                 Find NGOs
               </Link>
-              <Link to="/about" className="bg-gray-600 text-gray px-8 py-3 rounded-lg font-semibold border-2 border-gray hover:bg-gray hover:text-gray-900">
-                Learn More
-              </Link>
+              
             </div>
           </div>
         </div>
