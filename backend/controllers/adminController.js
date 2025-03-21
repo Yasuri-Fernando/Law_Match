@@ -4,8 +4,9 @@ import { v2 as cloudinary } from "cloudinary";
 import lawyerModel from "../models/lawyerModel.js";
 import jwt from 'jsonwebtoken'
 
+
 // API for adding lawyer
-const addlawyer = async (req, res) => {
+export const addlawyer = async (req, res) => {
     try {
         const { name, email, password, speciality, degree, experience, about, fees, address } = req.body;
         const imageFile = req.file;
@@ -62,13 +63,13 @@ const addlawyer = async (req, res) => {
         res.json({ success: true, message: "Lawyer Added" });
 
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.json({ success: false, message: error.message });
     }
 }
 
 //API For admin login
-const loginAdmin = async (req, res) => {
+export const loginAdmin = async (req, res) => {
     try {
         const { email, password } = req.body;
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
@@ -83,5 +84,18 @@ const loginAdmin = async (req, res) => {
     }
 }
 
+// API to get all lawyers list for admin panel
+ export const allLawyers = async (req,res) => {
+    try{
+        const lawyers = await lawyerModel.find({}).select('-password')
+        res.json({success:true,lawyers})
 
-export { addlawyer, loginAdmin };
+    } catch {
+        console.log(error);
+        res.json({ success: false, message: error.message })
+    }
+    
+}
+//export { addlawyer, loginAdmin, allLawyers };
+
+//export { allLawyers };
