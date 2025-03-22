@@ -8,11 +8,10 @@ const AppContextProvider = (props) => {
     const currencySymbol = '$'
     const backendUrl = import.meta.env.VITE_BACKEND_URL
     const[lawyers,setLawyers] = useState([])
+    const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):false)
+
+
     
-    const value = {
-        lawyers,
-        currencySymbol
-    }
 
     const getlawyersData = async () => {
         try{
@@ -29,6 +28,13 @@ const AppContextProvider = (props) => {
             console.log(error)
             toast.error(error.message)
         }
+    }
+
+    const value = {
+        lawyers,
+        currencySymbol,
+        token,setToken,
+        backendUrl
     }
 
     useEffect(() =>{
