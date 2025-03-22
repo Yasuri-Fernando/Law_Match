@@ -17,4 +17,18 @@ const changeAvailability = async(req,res) => {
         res.json({ success:false, message:error.message })
     }
 }
-export {changeAvailability}
+
+const lawyerList = async (req, res) => {
+    try {
+        console.log("Received request for lawyer list");
+        const lawyers = await lawyerModel.find({}).select(['-password', '-email']);
+        res.json({ success: true, lawyers });
+    } catch (error) {
+        console.log("Error:", error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+
+
+export {changeAvailability,lawyerList}
