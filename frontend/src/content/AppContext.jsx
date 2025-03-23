@@ -1,51 +1,73 @@
 import { createContext, useEffect, useState } from "react";
-import axios from 'axios'
-import {toast} from 'react-toastify'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-export const AppContext = createContext()
+export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
-    const currencySymbol = '$'
-    const backendUrl = import.meta.env.VITE_BACKEND_URL
-    const[lawyers,setLawyers] = useState([])
-    const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):false)
+  const currencySymbol = '$';
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [lawyers, setLawyers] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem('token') || false);
+  const [userData, setUserData] = useState({}); // Initialize as an empty object
 
-
-    
-
-    const getlawyersData = async () => {
-        try{
-
-            const {data} = await axios.get(backendUrl  + '/api/lawyer/list')
-            if (data.success) {
-                setLawyers(data.lawyers)
-
-            } else{
-               toast.error(data.message) 
-            }
-
-        }catch (error) {
-            console.log(error)
-            toast.error(error.message)
-        }
+  const getLawyersData = async () => {
+    try {
+      const { data } = await axios.get(backendUrl + '/api/lawyer/list');
+      if (data.success) {
+        setLawyers(data.lawyers);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
     }
+  };
 
-    const value = {
-        lawyers,
-        currencySymbol,
-        token,setToken,
-        backendUrl
+  const loadUserProfileData = async () => {
+    if (!token) return; // Prevent API call if token is not set
+    try {
+      const { data } = await axios.get(backendUrl + '/api/user/get-profile', { headers: { token } });
+      if (data.success) {
+        setUserData(data.userData);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
     }
+  };
 
-    useEffect(() =>{
-        getlawyersData()
-    },[])
+  const value = {
+    lawyers,
+    currencySymbol,
+    token,
+    setToken,
+    backendUrl,
+    userData,
+    setUserData,
+    loadUserProfileData,
+  };
 
-    return(
-        <AppContext.Provider value={value}>
-            {props.children}
-        </AppContext.Provider>
-    )
-}
+  useEffect(() => {
+    getLawyersData();
+  }, []); // Get lawyers data once on component mount
 
-export default AppContextProvider
+  useEffect(() => {
+    if (token) {
+      loadUserProfileData(); // Load user data when token is set
+    } else {
+      setUserData({}); // Clear user data if no token
+    }
+  }, [token]); // Run whenever `token` changes
+
+  return (
+    <AppContext.Provider value={value}>
+      {props.children}
+    </AppContext.Provider>
+  );
+};
+
+export default AppContextProvider;
