@@ -16,7 +16,7 @@ try:
         data = json.load(file)
     df = pd.DataFrame.from_dict(data, orient="index")
 except Exception as e:
-    print("Error loading database.json:", e)
+    print(f"Error loading database.json: {e}")
     df = pd.DataFrame()
 
 # Synonym Mapping (Add more as needed)
@@ -89,4 +89,4 @@ def get_steps():
         return jsonify({"error": "Sorry, I couldn't find a matching procedure."}), 404
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(port=5000)
