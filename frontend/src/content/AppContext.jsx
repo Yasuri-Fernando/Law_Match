@@ -9,7 +9,7 @@ const AppContextProvider = (props) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [lawyers, setLawyers] = useState([]);
   const [token, setToken] = useState(localStorage.getItem('token') || false);
-  const [userData, setUserData] = useState({}); // Initialize as an empty object
+  const [userData, setuserData] = useState({}); // Initialize as an empty object
 
   const getLawyersData = async () => {
     try {
@@ -30,7 +30,7 @@ const AppContextProvider = (props) => {
     try {
       const { data } = await axios.get(backendUrl + '/api/user/get-profile', { headers: { token } });
       if (data.success) {
-        setUserData(data.userData);
+        setuserData(data.userData);
       } else {
         toast.error(data.message);
       }
@@ -41,13 +41,13 @@ const AppContextProvider = (props) => {
   };
 
   const value = {
-    lawyers,
+    lawyers,getLawyersData,
     currencySymbol,
     token,
     setToken,
     backendUrl,
     userData,
-    setUserData,
+    setuserData,
     loadUserProfileData,
   };
 
@@ -59,7 +59,7 @@ const AppContextProvider = (props) => {
     if (token) {
       loadUserProfileData(); // Load user data when token is set
     } else {
-      setUserData({}); // Clear user data if no token
+      setuserData({}); // Clear user data if no token
     }
   }, [token]); // Run whenever `token` changes
 

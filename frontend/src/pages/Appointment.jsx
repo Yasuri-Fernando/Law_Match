@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { AppContext } from '../content/AppContext';
-<<<<<<< Updated upstream
-=======
 import RelatedLawyers from '../components/RelatedLawyers';
->>>>>>> Stashed changes
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const Appointment = () => {
-  const { docId } = useParams();
-  const { lawyers, currencySymbol } = useContext(AppContext);
+  const { lawId } = useParams();
+  const { lawyers, currencySymbol, backendUrl, token, getLawyersData, userData} = useContext(AppContext);
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  const navigate = useNavigate()
 
   const [lawInfo, setLawInfo] = useState(null);
   const [lawSlots, setLawSlots] = useState([]);
@@ -18,7 +20,7 @@ const Appointment = () => {
   const [slotTime, setSlotTime] = useState('');
 
   const fetchLawInfo = async () => {
-    const lawInfo = lawyers.find(law => law._id === docId);
+    const lawInfo = lawyers.find(law => law._id === lawId);
     setLawInfo(lawInfo);
   };
 
@@ -46,11 +48,26 @@ const Appointment = () => {
       while (currentDate < endTime) {
         let formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+        let day = currentDate.getDate()
+        let month = currentDate.getMonth()+1
+        let year = currentDate.getFullYear()
+
+        const slotDate = day +"_" + month + "_" + year
+        const slotTime = formattedTime
+
+        const isSlotAvailable = lawInfo.slots_booked[slotDate] && lawInfo.slots_booked[slotDate].includes(slotTime) ? false:true
+
+        if (isSlotAvailable) {
+          //add sot to array
         timeSlots.push({
           datetime: new Date(currentDate),
           time: formattedTime,
-        });
+        })
+        }
 
+        
+
+        //Increment current time by 30 minutes
         currentDate.setMinutes(currentDate.getMinutes() + 30);
       }
 
@@ -58,12 +75,63 @@ const Appointment = () => {
     }
   };
 
+  const bookAppointment = async () => {
+    if (!token) {
+      toast.warn('Login to book an appointment');
+      return navigate('/login');
+    }
+
+    if (!userData || !userData._id || !userData.name || !userData.email) {
+      toast.error('User data is missing');
+      return;
+    }
+  
+    try {
+      const date = lawSlots[slotIndex][0].datetime
+  
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+
+      const slotDate = day +"_" + month + "_" + year
+      
+  
+      const { data } = await axios.post(
+        backendUrl + '/api/user/book-appointment',
+        { 
+          
+          lawId, 
+          slotDate, 
+          slotTime 
+         
+          
+        },
+        { headers: { token } }
+      )
+  
+      if (data.success) {
+        toast.success(data.message)
+        getLawyersData()
+        navigate('/my-appointments');
+      } else {
+        toast.error(data.message)
+      }
+  
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+  
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       await fetchLawInfo();
     };
     fetchData();
-  }, [lawyers, docId]);
+  }, [lawyers, lawId]);
 
   useEffect(() => {
     if (lawInfo) {
@@ -78,7 +146,7 @@ const Appointment = () => {
   return (
     lawInfo && (
       <div>
-        {/* Doctor Details */}
+        {/* lawyer Details */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div>
             <img className="bg-primary w-full sm:max-w-72 rounded-lg" src={lawInfo.image} alt="" />
@@ -121,22 +189,19 @@ const Appointment = () => {
             ))}
           </div>
           <div className='flex items-center gap-3 w-full overflow-x-scroll mt-4'>
-            {lawSlots.length && lawSlots[slotIndex].map((item,index)=>(
+            {lawSlots.length > 0 && lawSlots[slotIndex].map((item,index)=>(
               <p onClick={()=> setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white' : 'text-gray-400 border border-gray-300'}`} key={index}>  
 
                 {item.time.toLowerCase()}
               </p>
             ))}
           </div>
-          <button className='bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6'>Book An Appointment</button>
+          <button onClick={bookAppointment} className='bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6'>Book An Appointment</button>
         </div>
-<<<<<<< Updated upstream
-=======
         <div>
           {/* Listing Lawyers */ }
-          <RelatedLawyers docId={docId}  speciality={lawInfo.speciality}/>
+          <RelatedLawyers lawId={lawId}  speciality={lawInfo.speciality}/>
         </div>
->>>>>>> Stashed changes
       </div>
     )
   );

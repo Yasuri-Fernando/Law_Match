@@ -2,6 +2,10 @@
 
 //user authentication middleware
 import jwt from 'jsonwebtoken';
+import userModel from "../models/userModel.js"; 
+
+
+
 
 const authUser = async (req, res, next) => {
   try {
