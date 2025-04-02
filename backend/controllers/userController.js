@@ -4,7 +4,7 @@ import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import {v2 as cloudinary} from 'cloudinary'
 import lawyerModel from '../models/lawyerModel.js'
-import appointmentModel from "../models/appointmentmodel.js";
+import appointmentModel from "../models/appointmentModel.js";
 
 
 import paypal from "@paypal/checkout-server-sdk";

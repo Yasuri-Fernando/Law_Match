@@ -109,4 +109,43 @@ const appointmentsAdmin = async (req,res) => {
     }
 }
 
-export {appointmentsAdmin}
+// API for appointment cancellation
+const appointmentCancel = async (req, res) => {
+    try {
+      const { userId, appointmentId } = req.body; // Ensure userId is received from the request
+  
+      // Fetch appointment details
+      const appointmentData = await appointmentModel.findById(appointmentId);
+      if (!appointmentData) {
+        return res.json({ success: false, message: "Appointment not found" });
+      }
+  
+      // Verify appointment user
+      if (appointmentData.userId.toString() !== userId) {
+        return res.json({ success: false, message: "Unauthorized action" });
+      }
+  
+      // Cancel the appointment
+      await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true });
+  
+      // Release the lawyer slot
+      const { lawId, slotDate, slotTime } = appointmentData;
+      const lawyerData = await lawyerModel.findById(lawId);
+  
+      if (lawyerData) {
+        let slots_booked = lawyerData.slots_booked;
+        slots_booked[slotDate] = slots_booked[slotDate].filter((e) => e !== slotTime);
+        await lawyerModel.findByIdAndUpdate(lawId, { slots_booked });
+      }
+  
+      res.json({ success: true, message: "Appointment Cancelled" });
+  
+    } catch (error) {
+      console.error("Error in appointmentCancel:", error);
+      res.json({ success: false, message: error.message });
+    }
+  };
+  
+
+
+export {appointmentsAdmin, appointmentCancel}
