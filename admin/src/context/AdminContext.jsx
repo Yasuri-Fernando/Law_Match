@@ -26,10 +26,32 @@ const AdminContextProvider = (props) => {
        } 
     }
 
+    const changeAvailability = async (lawId) => {
+        try {
+            const { data } = await axios.post(backendUrl + '/api/admin/change-availability', { lawId }, { headers: { aToken } });
+            if (data.success) {
+                toast.success(data.message);
+                getAllLawyers() // Refresh the list of lawyers after changing availability
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {  // Add the error parameter here
+            toast.error(error.message);  // Now the error is correctly handled
+        }
+    };
+    
+    const getAllAppointments = async () => {
+        try {
+            const {data} = await axios.get(backendUrl+'/api/admin/appointments',{headers:{aToken}})
+        } catch (error) {
+            
+        }
+    }
+
     const value = {
         aToken,setAToken,
         backendUrl,lawyers,
-        getAllLawyers
+        getAllLawyers,changeAvailability,
 
     }
     return (
