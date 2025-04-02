@@ -6,6 +6,7 @@ import {v2 as cloudinary} from 'cloudinary'
 import lawyerModel from '../models/lawyerModel.js'
 import appointmentModel from "../models/appointmentmodel.js";
 
+
 import paypal from "@paypal/checkout-server-sdk";
 import dotenv from "dotenv";
 dotenv.config();
@@ -224,9 +225,7 @@ const cancelAppointment = async (req,res) =>{
   }
 }
 
-import paypal from "@paypal/checkout-server-sdk";
-import dotenv from "dotenv";
-dotenv.config();
+
 
 // Set up PayPal environment
 const environment = new paypal.core.SandboxEnvironment(
@@ -253,8 +252,8 @@ const paymentpaypal = async (req, res) => {
       purchase_units: [
         {
           amount: {
-            currency_code: process.env.CURRENCY || "USD",
-            value: appointmentData.amount.toFixed(2),
+            currency_code: process.env.CURRENCY, // Ensure this is a valid currency code
+            value: appointmentData.amount.toFixed(2), // Ensure this is a string
           },
           description: `Appointment Payment for ${appointmentData._id}`,
         },
@@ -263,6 +262,14 @@ const paymentpaypal = async (req, res) => {
 
     // Execute PayPal order creation
     const order = await paypalClient.execute(request);
+    
+    console.log("PayPal Response:", order.result); // Log PayPal response
+
+    // Ensure the order object is correctly returned
+    if (!order.result.id || !order.result.purchase_units[0].amount.value) {
+      return res.json({ success: false, message: "Invalid payment data received." });
+    }
+
     res.json({ success: true, order: order.result });
 
   } catch (error) {
@@ -270,6 +277,7 @@ const paymentpaypal = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
 
 
 export { registerUser, loginUser, getProfile, updateProfile, bookAppointment, listAppointment, cancelAppointment,paymentpaypal};
