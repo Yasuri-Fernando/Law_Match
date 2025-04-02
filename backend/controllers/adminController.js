@@ -146,6 +146,25 @@ const appointmentCancel = async (req, res) => {
     }
   };
   
+// API to get dashboard data for admin panel
+const adminDashboard = async (req,res) => {
 
+    try {
+        const lawyers = await lawyerModel.find({})
+        const users = await userModel.find({})
+        const appointments = await appointmentModel.find({})
 
-export {appointmentsAdmin, appointmentCancel}
+        const dashData = {
+            lawyers: lawyers.length,
+            appointments:appointments.length,
+            clients: users.length,
+            latestAppointments: appointments.reverse().slice(0,5)
+        }
+        res.json({success:true,dashData})
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message })
+    }
+}
+
+export {appointmentsAdmin, appointmentCancel,adminDashboard}
